@@ -7,6 +7,7 @@ var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+//Importamos el fichero que define las interacciones con nuestra api
 var apiRouter = require('./routes/api');
 
 var app = express();
@@ -24,6 +25,7 @@ app.use(cors());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+//Especificamos la ruta para la api
 app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler

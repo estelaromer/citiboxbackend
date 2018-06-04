@@ -4,7 +4,7 @@ var router = express.Router();
 let modelOrder = require('../models/orders');
 
 
-router.get('/nuevaorden/:id', function(req, res, next) {
+router.get('/v1/order/:id', function(req, res, next) {
     //Almacenamos el id de la URL
     let idOrden = req.params.id;
     /*Llamamos al método que comprueba si el id de la URL concuerda con el id de pedido
@@ -14,5 +14,17 @@ router.get('/nuevaorden/:id', function(req, res, next) {
         res.json(row);
     });
 });
+
+router.post('/v1/order/:id', function(req, res, next) {
+    let idOrden = req.params;
+    let statusData = req.body;
+    // console.log(idOrden);
+    // console.log(statusData);
+    modelOrder.setStatus(idOrden, statusData, (err, row) => {
+        if (err) return res.json(err);
+        res.json(row);
+        
+    })
+})
 
 module.exports = router;

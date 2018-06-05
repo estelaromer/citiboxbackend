@@ -18,8 +18,6 @@ router.get('/v1/order/:id', function(req, res, next) {
 router.post('/v1/order/:id', function(req, res, next) {
     let idOrden = req.params;
     let statusData = req.body;
-    // console.log(idOrden);
-    // console.log(statusData);
     modelOrder.setStatus(idOrden, statusData, (err, row) => {
         if (err) return res.json(err);
         res.json(row);

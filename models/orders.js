@@ -64,6 +64,22 @@ exports.setStatus = (idOrder, data, done) => {
     })
 }
 
+exports.resetStatus = () => {
+    fs.readFile('./data/data.json', 'UTF-8', (eerLectura, content) => {
+        if(errLectura) {
+            err = {'error': 'problema leyendo fichero'};
+            done(err,null);
+        } else {
+            let order = JSON.parse(content)
+            order.estado = 'activo';
+            fs.writeFile('./data/data.json', JSON.stringify(order), (err) => {
+                if (err) return console.log(err.message);
+                console.log('File has been reset!');
+            })
+        }
+    })
+}
+
 /*let orderData = {
     'idOrden': '12345',
     'buzon': '25',

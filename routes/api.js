@@ -25,4 +25,11 @@ router.post('/v1/order/:id', function(req, res, next) {
     })
 })
 
+router.post('/reset', function (req,res, next) {
+    modelOrder.resetStatus((err,row) => {
+        if (err) return res.json(err);
+        res.json(row);
+    })
+})
+
 module.exports = router;
